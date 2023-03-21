@@ -1,0 +1,180 @@
+/* CSS for login/signup page */
+*{
+    margin: 0;
+    font-family: Lato;
+    font-weight: Regular;
+}
+
+body{
+    display: flex;
+    min-height: 100vh;
+    align-items: center;
+    justify-content: center;
+    background-image: url("bg.jpg");
+}
+
+.container{
+    position: relative; 
+    align-items: center;
+    width: 500px;
+    height: 450px;
+    padding: 20px 30px;
+    background: rgba(233, 233, 233, 1);
+    border-radius: 20px;
+    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.25);
+}
+
+h1{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.toggleBarContainer{
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    margin-top: 35px;
+}
+
+.toggleBar{
+    position: absolute;
+    display: flex;
+    border-bottom: 1.5px solid #0b262a;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.toggleBar:after {
+    content: '';
+    height: 6px;
+    width: 60px;
+    background: #0b262a;
+    border-radius: 60px 60px 0 0;
+    position: absolute;
+    bottom: 0;
+    left: 8px;
+    transition: 0.3s ease;
+}
+
+.toggleBar.active{
+    border-bottom: 1.5px solid #0b262a;
+}
+
+.toggleBar.active:after{
+    left: 82px;
+    width: 70px;
+    background: #0b262a;
+}
+
+.loginOpt{
+    padding: 5px 12px;
+    background: none;
+    margin-bottom: 10px;
+    border-radius: 50px;
+    text-align: center;
+    margin-left: 4px;
+    letter-spacing: 1px;
+    cursor: pointer;
+    transition: 0.3s ease;
+}
+
+.signupOpt{
+    padding: 5px 12px;
+    background: none;
+    margin-bottom: 10px;
+    border-radius: 50px;
+    text-align: center;
+    margin-left: 4px;
+    letter-spacing: 1px;
+    cursor: pointer;
+    transition: 0.3s ease;
+}
+
+.container .menu{
+    width: 100%;
+    margin-top: 30px;
+    position: relative;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    overflow: hidden;
+}
+
+.menu #form{
+    width: 200%;
+    position: relative;
+    display: flex;
+    margin: auto;
+    transition: 0.2s ease-in-out;
+    padding-top: 15px;
+}
+
+#section{
+    margin: auto;
+    width: 100%;
+}
+
+label{
+    display: block;
+    margin-top: 20px;
+    margin-bottom: 15px;
+    padding: 10px 15px;
+    text-align: center;
+    font-size: 15px;
+    color: rgba(140, 140, 140, 1);
+}
+
+.element {
+    position: relative;
+}
+
+.element input{
+    width: 80%;
+    height: 40px;
+    border-radius: 4px;
+    margin-bottom: 15px;
+    background: rgba(255, 255, 255, 1);
+    border: 1px solid #f5f4f4;
+    padding-left: 40px;
+    font-size: 20px;
+}
+
+input::placeholder{
+    color: rgba(197, 197, 197, 0.5);
+    font-size: 20px;
+}
+
+span{
+    display: block;
+    padding: 3px 20px;
+    text-align: center;
+    font-size: 15px;
+    color: #811818;
+    text-align: center;
+}
+
+.buttons{
+    padding: 5px 25px;
+    background: #00121b;
+    border-radius: 50px;
+    font-size: 25px;
+    border: none;
+    margin-top: 15px;
+    color: rgba(255, 255, 255, 1);
+    cursor: pointer;
+}
+
+.buttons.active{
+    transform: scale(1.01);
+}
+
+@media all and (max-width:500px) 
+{
+    .container
+    {
+        width: 100vw;
+    }
+}
