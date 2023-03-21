@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Contact Manager</title>
+    <link href="https://fonts.googleapis.com/css?family=Lato&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css?family=Sen&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css" />
+</head>
+
+<body>
+    <div class="container">
+
+        <h1>Contact Manager</h1>
+        <label>Login or create an account to get started</label>
+
+        <!-- toggle (bar) between sign up and login -->
+        <div class="toggleBarContainer">
+            <div class="toggleBar">
+                <div class="loginOpt" onclick="loginToggle();">Login</div>
+                <div class="signupOpt" onclick="signupToggle();">Sign Up</div>
+            </div>
+        </div>
+
+        <div class="menu">
+            <form id="form">
+                <!-- login view -->
+                <div id="section">
+                    <div class="element">
+                        <input type="text" id="loginName" placeholder="Username">
+                    </div>
+                    <div class="element">
+                        <input type="password" id="loginPassword" placeholder="Password">
+                    </div>
+                    <span id="loginResult"></span>
+                    <button type= "button" class="buttons" id="loginBtn" onclick="doLogin();">Login</button>
+                </div>
+    
+                <!-- sign up view -->
+                <div id="section">
+                    <div class="element">
+                        <input type="text" id="signupName" placeholder="Username">
+                    </div>
+                    <div class="element">
+                        <input type="password" id="signupPassword" placeholder="Password">
+                    </div>
+                    <div class="element">
+                        <input type="password" id="signupConfirm" placeholder="Confirm password">
+                    </div>
+                    <span id="signupResult"></span>
+                    <button type= "button" class="buttons" id="signupBtn" onclick="doSignup();">Sign Up</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="/signup.js"></script>  
+    <script>
+        function readCookie()
+        {
+            userID = null;
+            let data = document.cookie;
+            let splits = data.split(",");
+            for(var i = 0; i < splits.length; i++) 
+            {
+                let thisOne = splits[i].trim();
+                let tokens = thisOne.split("=");
+
+                if( tokens[0] == "userID" )
+                {
+                    userID = parseInt( tokens[1].trim() );
+                    
+                }
+            }
+
+            console.log(userID);
+            if( userID != null && userID > 0)
+            {
+                window.location.href = "/contactList.html";
+            }
+        }
+        readCookie()
+    </script>
+</body>
+</html>
