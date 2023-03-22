@@ -1,0 +1,280 @@
+swagger: "2.0"
+info:
+  description: "This is the API documentation for Group 13's Contact Manager, completed for COP4331 in the Spring 2023 semester."
+  version: "1.0.0"
+  title: "Contact Manager (Group 13)"
+
+  license:
+    name: "Apache 2.0"
+    url: "http://www.apache.org/licenses/LICENSE-2.0.html"
+host: "cop4331-g13.com"
+schemes:
+- "https"
+paths: 
+  /Login.php:
+    post:
+      tags:
+      - Login and Registration
+      summary: Logs in to a user given an account name and password.
+      description: After given a username and password pairing, either confirms the account information to log in or informs the client of an incorrect username or password.
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      parameters:
+      - in: body
+        name: Data
+        description: Username, Password
+        schema:
+          $ref: '#/definitions/Login'
+      responses:
+        200:
+          description: OK
+        500:
+          description: Server Error
+  /Signup.php:
+    post:
+      tags:
+      - Login and Registration
+      summary: Adds a new user account to the database.
+      description: Adds a new user to the database with the given username and password, or returns that the username is already in use.
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      parameters:
+      - in: body
+        name: Data
+        description: Username, Password
+        schema:
+          $ref: '#/definitions/Signup'
+      responses:
+        200:
+          description: OK
+        500:
+          description: Server Error
+  /CreateContact.php:
+    post:
+      tags:
+      - CRUD Operations
+      summary: Creates a new contact.
+      description: Creates a new contact for the user and adds it to the database.
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      parameters:
+      - in: body
+        name: Data
+        description: Last Name, First Name, Email, Phone Number, and User ID
+        schema:
+          $ref: '#/definitions/CreateContact'
+      responses:
+        200:
+          description: OK
+        500:
+          description: Server Error
+  /SearchContacts.php:
+    post:
+      tags:
+      - CRUD Operations
+      summary: Searches for contacts that align with the users search input.
+      description: Takes a user's string and returns all contacts within that user's contact list that contain a matching string.
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      parameters:
+      - in: body
+        name: Data
+        description: User ID, Search string
+        schema:
+          $ref: '#/definitions/SearchContact'
+      responses:
+        200:
+          description: OK
+        500:
+          description: Server Error
+  /EditContact.php:
+    post:
+      tags:
+      - CRUD Operations
+      summary: Edits the contents of a contact.
+      description: Edits a currently existing contact's information.
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      parameters:
+      - in: body
+        name: Data
+        description: User ID, Contact ID, First Name, Last Name, Phone Number, and Email
+        schema:
+          $ref: '#/definitions/EditContact'
+      responses:
+        200:
+          description: OK
+        500:
+          description: Server Error
+  /DeleteContact.php:
+    post:
+      tags:
+      - CRUD Operations
+      summary: Deletes the selected contact.
+      description: Removes the selected contact from the database.
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      parameters:
+      - in: body
+        name: Data
+        description: Contact ID
+        schema:
+          $ref: '#/definitions/DeleteContact'
+      responses:
+        200:
+          description: OK
+        500:
+          description: Server Error
+  /LoadContacts.php:
+    post:
+      tags:
+      - Other
+      summary: Loads a list of contacts.
+      description: Returns a list of contacts from the user within a range. 
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      parameters:
+      - in: body
+        name: Data
+        description: User ID, Start Number, End Number
+        schema:
+          $ref: '#/definitions/LoadContacts'
+      responses:
+        200:
+          description: OK
+        500:
+          description: Server Error
+  
+definitions:
+  Login:
+    type: object
+    required:
+    - username
+    - password
+    properties:
+      username:
+        type: string
+        example: "TestUser123"
+      password:
+        type: string
+        example: "Password123"
+  
+  Signup:
+    type: object
+    required:
+    - username
+    - password
+    properties:
+      username:
+        type: string
+        example: "TestUser123"
+      password:
+        type: string
+        example: "Password123"
+
+  CreateContact:
+    type: object
+    required:
+    - LastName
+    - FirstName
+    - Email
+    - Phone
+    - UserID
+    properties:
+      LastName:
+        type: string
+        example: "Last"
+      FirstName:
+        type: string
+        example: "First"
+      Email:
+        type: string
+        example: "FirstLast@knights.ucf.edu"
+      Phone:
+        type: string
+        example: "321-321-3210"
+      UserID:
+        type: integer
+        example: 1
+
+  SearchContact:
+    type: object
+    required:
+    - userID
+    - search
+    properties:
+      userID:
+        type: integer
+        example: 2
+      search:
+        type: string
+        example: "John"
+
+  EditContact:
+    type: object
+    required:
+    - UserID
+    - ContactID
+    - FirstName
+    - LastName
+    - Phone
+    - Email
+    properties:
+      UserID:
+        type: integer
+        example: 1
+      ContactID:
+        type: integer
+        example: 1    
+      FirstName:
+        type: string
+        example: "First"
+      LastName:
+        type: string
+        example: "Last"
+      Phone:
+        type: string
+        example: "321-321-3210"
+      Email:
+        type: string
+        example: "FirstLast@knights.ucf.edu"
+
+  DeleteContact:
+    type: object
+    required:
+    - ContactID
+    properties:
+      ContactID:
+        type: integer
+        example: 2
+
+  LoadContacts:
+    type: object
+    required:
+    - UserID
+    - Start
+    - End
+    properties:
+      UserID:
+        type: integer
+        example: 1
+      Start:
+        type: integer
+        example: 2  
+      End:
+        type: integer
+        example: 3  
