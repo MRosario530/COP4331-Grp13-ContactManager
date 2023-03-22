@@ -2,15 +2,23 @@ body{
     background-image: url("bg.jpg");
     padding: 100px;
     display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .container{
     background-color: rgba(233, 233, 233, 1);
-    height: 900px;
+    height: 950px;
     width: 1200px;
-    position: relative;
     padding: 10px;
     border-radius: 10px;
+    align-items: center;
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
 }
 h1{
     font-family: Lato;
@@ -33,6 +41,7 @@ img{
     border-radius: 50px;
     background-color: #00121b;
     color: white;
+    border-color: none;
 }
 .btn:hover{
     background-color: #00121b;
